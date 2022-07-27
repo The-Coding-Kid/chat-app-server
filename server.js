@@ -32,5 +32,9 @@ app.listen(port, () => {
   console.log(`Server started on port ${port} and pushing to Heroku`);
 });
 
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
 app.use("/api/register", register);
 app.use("api/posts", posts);
