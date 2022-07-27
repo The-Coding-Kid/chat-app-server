@@ -36,5 +36,9 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
+app.post("/testpost", (req, res) => {
+  res.send(req.body);
+});
+
 app.use("/api/register", register);
 app.use("api/posts", posts);
