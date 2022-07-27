@@ -1,0 +1,34 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/The-Coding-Kid/chat-app.git"
+  },
+  "license": "MIT",
+  "private": "true",
+  "bugs": {
+    "url": "https://github.com/The-Coding-Kid/chat-app/issues"
+  },
+  "homepage": "https://github.com/The-Coding-Kid/chat-app#readme",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "description": "",
+  "dependencies": {
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "firebase": "^9.9.1",
+    "firebase-admin": "^11.0.0",
+    "helmet": "^5.1.0",
+    "mongoose": "^6.4.4",
+    "nodemon": "^2.0.19",
+    "prisma": "^4.0.0"
+  }
+}
