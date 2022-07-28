@@ -12,6 +12,7 @@ app.use(express.json());
 
 const register = require("./routes/register");
 const posts = require("./routes/posts");
+const createPosts = require("./routes/CreatePost");
 
 // Connect to MongoDB
 mongoose
@@ -42,3 +43,4 @@ app.post("/testpost", (req, res) => {
 
 app.use("/api/register", register);
 app.use("api/posts", posts);
+app.use("/api/posts/create", createPosts);

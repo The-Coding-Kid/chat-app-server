@@ -9,16 +9,13 @@ router.post("/", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 
-  console.log(first_name, " ", last_name, " ", email, " ", password);
-
   const user = new User({
     first_name: first_name,
     last_name: last_name,
     email: email,
-    password: password,
   });
   user.save().then((user) => {
-    res.json(user);
+    res.json("User added");
   });
 });
 
