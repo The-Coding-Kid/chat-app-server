@@ -13,6 +13,7 @@ app.use(express.json());
 const register = require("./routes/register");
 const posts = require("./routes/posts");
 const createPosts = require("./routes/CreatePost");
+const uploadImage = require("./routes/UploadImageforPost");
 
 // Connect to MongoDB
 mongoose
