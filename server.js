@@ -10,10 +10,13 @@ app.use(cors());
 app.use(helmet());
 app.use(express.json());
 
-const register = require("./routes/register");
-const posts = require("./routes/posts");
-const createPosts = require("./routes/CreatePost");
-const uploadImage = require("./routes/UploadImageforPost");
+const register = require("./routes/User/register");
+const posts = require("./routes/Posts/posts");
+const createPosts = require("./routes/Posts/CreatePost");
+const updateProfilePhoto = require("./routes/User/UpdateProfilePhoto");
+const createGroup = require("./routes/Groups/CreateGroup");
+const joinGroup = require("./routes/Groups/JoinGroup");
+const getAllGroups = require("./routes/Groups/GetAllGroups");
 
 // Connect to MongoDB
 mongoose
@@ -45,3 +48,7 @@ app.post("/testpost", (req, res) => {
 app.use("/api/register", register);
 app.use("/api/posts", posts);
 app.use("/api/posts/create", createPosts);
+app.use("/api/profile/updatephoto", updateProfilePhoto);
+app.use("/api/groups/create", createGroup);
+app.use("/api/groups/join", joinGroup);
+app.use("/api/groups", getAllGroups);

@@ -15,6 +15,14 @@ const UserSchema = new Schema({
     required: true,
     unique: true,
   },
+  profile_picture: {
+    data: Buffer,
+    contentType: String,
+  },
+  groups_joined: {
+    type: [String],
+    default: [],
+  },
 });
 
 module.exports = mongoose.model("User", UserSchema);

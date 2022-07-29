@@ -26,6 +26,14 @@ const PostSchema = new Schema({
     type: Number,
     default: 0,
   },
+  group_posted_in: {
+    type: String,
+    required: true,
+  },
+  comments: {
+    type: [String],
+    default: [],
+  },
 });
 
 module.exports = mongoose.model("Post", PostSchema);
