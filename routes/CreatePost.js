@@ -17,11 +17,13 @@ const upload = multer({ storage: storage });
 
 router.route("/").post(upload.single("file"), (req, res) => {
   const content = req.body.content;
-  const createdBy = req.body.createdBy;
+  const createdByEmail = req.body.createdByEmail;
+  const createdByName = req.body.createdByName;
 
   const post = new Post({
     content: content,
-    createdBy: createdBy,
+    createdByEmail: createdByEmail,
+    createdByName: createdByName,
     image: {
       data: fs.readFileSync(req.file.path),
       contentType: "image/jpeg",

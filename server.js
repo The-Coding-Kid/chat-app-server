@@ -43,5 +43,5 @@ app.post("/testpost", (req, res) => {
 });
 
 app.use("/api/register", register);
-app.use("api/posts", posts);
+app.use("/api/posts", posts);
 app.use("/api/posts/create", createPosts);

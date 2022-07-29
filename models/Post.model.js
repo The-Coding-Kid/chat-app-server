@@ -10,7 +10,11 @@ const PostSchema = new Schema({
     data: Buffer,
     contentType: String,
   },
-  createdBy: {
+  createdByEmail: {
+    type: String,
+    required: true,
+  },
+  createdByName: {
     type: String,
     required: true,
   },
