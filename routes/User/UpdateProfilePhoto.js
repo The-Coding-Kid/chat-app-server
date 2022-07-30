@@ -3,24 +3,16 @@ const router = express.Router();
 const User = require("../../models/User.model");
 const fs = require("fs");
 const multer = require("multer");
+const uploadImage = require("../../uploadImage");
 
-const storage = multer.diskStorage({
-  destination: function (req, res, cb) {
-    cb(null, "profile_pictures/");
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
-  },
+const multerMid = multer({
+  storage: multer.memoryStorage(),
 });
 
-const upload = multer({ storage: storage });
-
-router.route("/").post(upload.single("file"), (req, res) => {
+router.route("/").post(multerMid.single("file"), async (req, res) => {
   const email = req.body.email;
-  const new_profile_picture = {
-    data: fs.readFileSync(req.file.path),
-    contentType: "image/jpeg",
-  };
+  const file = req.file;
+  const imageUrl = await uploadImage(file);
   const find_user = async () => {
     const user = await User.findOne({ email: email });
     if (user) {

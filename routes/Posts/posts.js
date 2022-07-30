@@ -7,8 +7,7 @@ router.get("/", (req, res) => {
   console.log("getting all posts");
   const posts = Post.find({})
     .then((posts) => {
-      console.log(posts);
-      res.sendFile(posts[0].image.path);
+      res.send(posts);
     })
     .catch((err) => {
       res.json(err);

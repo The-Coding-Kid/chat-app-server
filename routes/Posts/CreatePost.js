@@ -45,7 +45,6 @@ router.route("/").post(multerMid.single("file"), async (req, res) => {
     .catch((err) => {
       res.json(err);
     });
-  res.json("test");
 });
 
 module.exports = router;
