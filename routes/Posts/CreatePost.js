@@ -4,35 +4,28 @@ const Post = require("../../models/Post.model");
 const Group = require("../../models/Group.model");
 const fs = require("fs");
 const multer = require("multer");
+const url = require("url");
+const uploadImage = require("../../uploadImage");
 
-const storage = multer.diskStorage({
-  destination: function (req, res, cb) {
-    cb(null, "./uploads");
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname + ".jpg");
-  },
+const multerMid = multer({
+  storage: multer.memoryStorage(),
 });
 
-const upload = multer({ storage: storage });
-
-router.route("/").post(upload.single("file"), (req, res) => {
+router.route("/").post(multerMid.single("file"), async (req, res) => {
   const content = req.body.content;
   const createdByEmail = req.body.createdByEmail;
   const createdByName = req.body.createdByName;
   // const group_posted_in = req.body.group_posted_in;
-  console.log(req.file);
+  const file = req.file;
+  const imageUrl = await uploadImage(file);
 
-  console.log(req.body);
+  // console.log(req.body);
 
   const post = new Post({
     content: content,
     createdByEmail: createdByEmail,
     createdByName: createdByName,
-    image: {
-      data: fs.readFileSync(req.file.path),
-      contentType: "image/jpeg",
-    },
+    image: imageUrl,
     // group_posted_in: group_posted_in,rs
   });
 
@@ -52,6 +45,7 @@ router.route("/").post(upload.single("file"), (req, res) => {
     .catch((err) => {
       res.json(err);
     });
+  res.json("test");
 });
 
 module.exports = router;

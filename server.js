@@ -5,10 +5,19 @@ const cors = require("cors");
 const helmet = require("helmet");
 require("dotenv").config();
 const router = require("express").Router();
+const uploadImage = require("./uploadImage.js");
+const multer = require("multer");
+const bodyParser = require("body-parser");
+
+const multerMid = multer({
+  storage: multer.memoryStorage(),
+});
 
 app.use(cors());
-app.use(helmet());
-app.use(express.json());
+// app.use(helmet());
+app.disable("x-powered-by");
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 const register = require("./routes/User/register");
 const posts = require("./routes/Posts/posts");
@@ -42,9 +51,22 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.post("/testpost", (req, res) => {
-  res.send(req.body);
-});
+app.post(
+  "/testgoogleroute",
+  multerMid.single("file"),
+  async (req, res, next) => {
+    try {
+      const myFile = req.file;
+      const imageUrl = await uploadImage(myFile);
+      res.status(200).json({
+        message: "Upload was successful",
+        data: imageUrl,
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
 app.use("/api/register", register);
 app.use("/api/posts", posts);

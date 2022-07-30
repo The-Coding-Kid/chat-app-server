@@ -16,8 +16,7 @@ const UserSchema = new Schema({
     unique: true,
   },
   profile_picture: {
-    data: Buffer,
-    contentType: String,
+    type: String,
   },
   groups_joined: {
     type: [String],

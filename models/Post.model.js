@@ -7,8 +7,7 @@ const PostSchema = new Schema({
     required: true,
   },
   image: {
-    data: Buffer,
-    contentType: String,
+    type: String,
   },
   createdByEmail: {
     type: String,
