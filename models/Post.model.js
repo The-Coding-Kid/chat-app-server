@@ -28,7 +28,7 @@ const PostSchema = new Schema({
   },
   group_posted_in: {
     type: String,
-    required: true,
+    // required: true,
   },
   comments: {
     type: [String],

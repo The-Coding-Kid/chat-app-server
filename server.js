@@ -17,6 +17,7 @@ const updateProfilePhoto = require("./routes/User/UpdateProfilePhoto");
 const createGroup = require("./routes/Groups/CreateGroup");
 const joinGroup = require("./routes/Groups/JoinGroup");
 const getAllGroups = require("./routes/Groups/GetAllGroups");
+const createComment = require("./routes/Posts/CreateComment");
 
 // Connect to MongoDB
 mongoose
@@ -52,3 +53,4 @@ app.use("/api/profile/updatephoto", updateProfilePhoto);
 app.use("/api/groups/create", createGroup);
 app.use("/api/groups/join", joinGroup);
 app.use("/api/groups", getAllGroups);
+app.use("/api/comments/create", createComment);

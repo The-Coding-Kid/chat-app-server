@@ -7,10 +7,10 @@ const multer = require("multer");
 
 const storage = multer.diskStorage({
   destination: function (req, res, cb) {
-    cb(null, "uploads/");
+    cb(null, "./uploads");
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname);
+    cb(null, file.originalname + ".jpg");
   },
 });
 
@@ -20,7 +20,10 @@ router.route("/").post(upload.single("file"), (req, res) => {
   const content = req.body.content;
   const createdByEmail = req.body.createdByEmail;
   const createdByName = req.body.createdByName;
-  const group_posted_in = req.body.group_posted_in;
+  // const group_posted_in = req.body.group_posted_in;
+  console.log(req.file);
+
+  console.log(req.body);
 
   const post = new Post({
     content: content,
@@ -30,16 +33,16 @@ router.route("/").post(upload.single("file"), (req, res) => {
       data: fs.readFileSync(req.file.path),
       contentType: "image/jpeg",
     },
-    group_posted_in: group_posted_in,
+    // group_posted_in: group_posted_in,rs
   });
 
-  Group.findOne({ name: group_posted_in }).then((group) => {
-    if (group) {
-      group.posts.push(post._id);
-      group.save();
-      console.log("Post added to group");
-    }
-  });
+  // Group.findOne({ name: group_posted_in }).then((group) => {
+  //   if (group) {
+  //     group.posts.push(post._id);
+  //     group.save();
+  //     console.log("Post added to group");
+  //   }
+  // });
 
   post
     .save()

@@ -3,9 +3,11 @@ const router = express.Router();
 const Post = require("../../models/Post.model");
 
 router.get("/", (req, res) => {
-  const posts = Post.find({})
+  console.log("getting all posts");
+  const posts = Post.find({}, null, { limit: 10 })
     .then((posts) => {
-      res.json(posts);
+      res.json(posts.reverse());
+      console.log(posts);
     })
     .catch((err) => {
       res.json(err);
