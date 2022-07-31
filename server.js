@@ -14,7 +14,7 @@ const multerMid = multer({
 });
 
 app.use(cors());
-// app.use(helmet());
+app.use(helmet());
 app.disable("x-powered-by");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

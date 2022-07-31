@@ -41,6 +41,7 @@ router.route("/").post(multerMid.single("file"), async (req, res) => {
     .save()
     .then((post) => {
       res.json("Post added");
+      console.log(post);
     })
     .catch((err) => {
       res.json(err);

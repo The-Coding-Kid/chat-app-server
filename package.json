@@ -34,5 +34,8 @@
     "multer-gridfs-storage": "^5.0.2",
     "nodemon": "^2.0.19",
     "prisma": "^4.0.0"
+  },
+  "devDependencies": {
+    "compress-images": "^2.0.5"
   }
 }
