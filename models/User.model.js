@@ -20,7 +20,7 @@ const UserSchema = new Schema({
   },
   groups_joined: {
     type: [String],
-    default: [],
+    default: ["Public"],
   },
 });
 

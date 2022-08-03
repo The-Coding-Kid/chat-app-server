@@ -20,7 +20,7 @@ router.route("/").post(multerMid.single("file"), async (req, res) => {
   const createdByName = req.body.createdByName;
   const group_posted_in = req.body.group_posted_in;
   const file = req.file;
-  console.log(req.file);
+  console.log(req.body);
   const imageUrl = await uploadImage(file);
 
   // console.log(req.body);
@@ -31,7 +31,6 @@ router.route("/").post(multerMid.single("file"), async (req, res) => {
     createdByName: createdByName,
     image: imageUrl,
     group_posted_in: group_posted_in,
-    rs,
   });
 
   Group.findOne({ name: group_posted_in }).then((group) => {

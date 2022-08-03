@@ -6,11 +6,12 @@ const User = require("../../models/User.model");
 router.post("/", (req, res) => {
   const email = req.body.email;
   const group_name = req.body.group_name;
-
   Group.findOne({ name: group_name }).then((group) => {
     if (group) {
       group.members.push(email);
       group.save();
+    } else {
+      res.json("Group not found");
     }
   });
   User.findOne({ email: email }).then((user) => {

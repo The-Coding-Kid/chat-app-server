@@ -3,7 +3,8 @@ const router = express.Router();
 const Post = require("../../models/Post.model");
 const fs = require("fs");
 
-router.get("/", (req, res) => {
+router.post("/", (req, res) => {
+  const email = req.body.email;
   console.log("getting all posts");
   const posts = Post.find({})
     .then((posts) => {
