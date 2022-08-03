@@ -7,7 +7,8 @@ router.get("/", (req, res) => {
   console.log("getting all posts");
   const posts = Post.find({})
     .then((posts) => {
-      res.send(posts);
+      const last_ten_posts = posts.slice(-10);
+      res.json(last_ten_posts.reverse());
     })
     .catch((err) => {
       res.json(err);

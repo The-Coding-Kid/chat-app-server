@@ -7,17 +7,12 @@ require("dotenv").config();
 const router = require("express").Router();
 const uploadImage = require("./uploadImage.js");
 const multer = require("multer");
-const bodyParser = require("body-parser");
+var compression = require("compression");
 
-const multerMid = multer({
-  storage: multer.memoryStorage(),
-});
-
+app.use(express.json());
 app.use(cors());
-app.use(helmet());
-app.disable("x-powered-by");
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(helmet());
+app.use(compression());
 
 const register = require("./routes/User/register");
 const posts = require("./routes/Posts/posts");
@@ -27,6 +22,7 @@ const createGroup = require("./routes/Groups/CreateGroup");
 const joinGroup = require("./routes/Groups/JoinGroup");
 const getAllGroups = require("./routes/Groups/GetAllGroups");
 const createComment = require("./routes/Posts/CreateComment");
+const GetUser = require("./routes/User/GetUser");
 
 // Connect to MongoDB
 mongoose
@@ -51,23 +47,6 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.post(
-  "/testgoogleroute",
-  multerMid.single("file"),
-  async (req, res, next) => {
-    try {
-      const myFile = req.file;
-      const imageUrl = await uploadImage(myFile);
-      res.status(200).json({
-        message: "Upload was successful",
-        data: imageUrl,
-      });
-    } catch (error) {
-      next(error);
-    }
-  }
-);
-
 app.use("/api/register", register);
 app.use("/api/posts", posts);
 app.use("/api/posts/create", createPosts);
@@ -76,3 +55,4 @@ app.use("/api/groups/create", createGroup);
 app.use("/api/groups/join", joinGroup);
 app.use("/api/groups", getAllGroups);
 app.use("/api/comments/create", createComment);
+app.use("/api/user", GetUser);
