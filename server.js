@@ -11,7 +11,7 @@ var compression = require("compression");
 
 app.use(express.json({ limit: "4mb" }));
 app.use(cors());
-// app.use(helmet());
+app.use(helmet());
 app.use(compression());
 
 const register = require("./routes/User/register");
@@ -23,6 +23,9 @@ const joinGroup = require("./routes/Groups/JoinGroup");
 const getAllGroups = require("./routes/Groups/GetAllGroups");
 const createComment = require("./routes/Posts/CreateComment");
 const GetUser = require("./routes/User/GetUser");
+const AddFriend = require("./routes/User/AddFriend");
+const RemoveFriend = require("./routes/User/RemoveFriend");
+const GetFriends = require("./routes/User/GetFriends");
 // import { promisify } from "util";
 // const GET_ASYNC = promisify(client.get).bind(client);
 // const SET_ASYNC = promisify(client.set).bind(client);
@@ -62,3 +65,6 @@ app.use("/api/groups/join", joinGroup);
 app.use("/api/groups", getAllGroups);
 app.use("/api/comments/create", createComment);
 app.use("/api/user", GetUser);
+app.use("/api/users/friends/add", AddFriend);
+app.use("/api/users/friends/remove", RemoveFriend);
+app.use("/api/users/friends", GetFriends);

@@ -19,6 +19,10 @@ const GroupSchema = new Schema({
     type: String,
     required: true,
   },
+  background: {
+    type: String,
+    default: "",
+  },
 });
 
 module.exports = mongoose.model("Group", GroupSchema);

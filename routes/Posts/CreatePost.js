@@ -20,7 +20,7 @@ router.route("/").post(multerMid.single("file"), async (req, res) => {
   const createdByEmail = req.body.createdByEmail;
   const createdByName = req.body.createdByName;
   const group_posted_in = req.body.group_posted_in;
-  const profile_photo = req.body.profile_photo;
+  // const profile_photo = req.body.profile_photo;
   const file = req.file;
   const imageUrl = await uploadImage(file);
 
@@ -32,7 +32,7 @@ router.route("/").post(multerMid.single("file"), async (req, res) => {
     createdByName: createdByName,
     image: imageUrl,
     group_posted_in: group_posted_in,
-    profile_photo: profile_photo,
+    // profile_photo: profile_photo,
   });
 
   Group.findOne({ name: group_posted_in }).then((group) => {

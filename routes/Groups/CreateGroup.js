@@ -2,20 +2,29 @@ const express = require("express");
 const router = express.Router();
 const Group = require("../../models/Group.model");
 const User = require("../../models/User.model");
+const multer = require("multer");
+const uploadImage = require("../../uploadImage");
 
-router.post("/", (req, res) => {
+const multerMid = multer({
+  storage: multer.memoryStorage(),
+});
+
+router.post("/", multerMid.single("file"), (req, res) => {
   const name = req.body.name;
   const createdByEmail = req.body.createdByEmail;
+  const file = req.file;
+  const imageUrl = uploadImage(file);
 
   const group = new Group({
     name: name,
     createdByEmail: createdByEmail,
     members: [createdByEmail],
     posts: [],
+    background: imageUrl,
   });
 
   User.findOne({ email: createdByEmail }).then((user) => {
-    user.groups.push(group.name);
+    user.groups_joined.push(name);
     user.save();
   });
 
