@@ -23,6 +23,12 @@ const joinGroup = require("./routes/Groups/JoinGroup");
 const getAllGroups = require("./routes/Groups/GetAllGroups");
 const createComment = require("./routes/Posts/CreateComment");
 const GetUser = require("./routes/User/GetUser");
+// import { promisify } from "util";
+// const GET_ASYNC = promisify(client.get).bind(client);
+// const SET_ASYNC = promisify(client.set).bind(client);
+// const DEL_ASYNC = promisify(client.del).bind(client);
+
+// const client = redis.createClient(process.env.REDIS_URL);
 
 // Connect to MongoDB
 mongoose

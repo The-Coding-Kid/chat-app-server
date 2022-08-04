@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Group = require("../../models/Group.model");
+const User = require("../../models/User.model");
 
 router.post("/", (req, res) => {
   const name = req.body.name;
@@ -11,6 +12,11 @@ router.post("/", (req, res) => {
     createdByEmail: createdByEmail,
     members: [createdByEmail],
     posts: [],
+  });
+
+  User.findOne({ email: createdByEmail }).then((user) => {
+    user.groups.push(group.name);
+    user.save();
   });
 
   group

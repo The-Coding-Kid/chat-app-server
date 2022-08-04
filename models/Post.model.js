@@ -17,6 +17,9 @@ const PostSchema = new Schema({
     type: String,
     required: true,
   },
+  profile_photo: {
+    type: String,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

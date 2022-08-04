@@ -22,6 +22,10 @@ const UserSchema = new Schema({
     type: [String],
     default: ["Public"],
   },
+  friends: {
+    type: [String],
+    default: [],
+  },
 });
 
 module.exports = mongoose.model("User", UserSchema);

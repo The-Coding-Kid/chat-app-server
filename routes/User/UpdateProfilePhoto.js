@@ -16,7 +16,7 @@ router.route("/").post(multerMid.single("file"), async (req, res) => {
   const find_user = async () => {
     const user = await User.findOne({ email: email });
     if (user) {
-      user.profile_picture = new_profile_picture;
+      user.profile_picture = imageUrl;
       await user.save();
       res.json("Profile picture updated");
     } else {
