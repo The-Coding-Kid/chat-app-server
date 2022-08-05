@@ -9,11 +9,11 @@ const multerMid = multer({
   storage: multer.memoryStorage(),
 });
 
-router.post("/", multerMid.single("file"), (req, res) => {
+router.post("/", multerMid.single("file"), async (req, res) => {
   const name = req.body.name;
   const createdByEmail = req.body.createdByEmail;
   const file = req.file;
-  const imageUrl = uploadImage(file);
+  const imageUrl = await uploadImage(file);
 
   const group = new Group({
     name: name,

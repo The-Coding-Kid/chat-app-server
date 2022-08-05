@@ -36,6 +36,13 @@ const PostSchema = new Schema({
     type: [String],
     default: [],
   },
+  likes: {
+    type: Number,
+  },
+  liked_by: {
+    type: [String],
+    default: [],
+  },
 });
 
 module.exports = mongoose.model("Post", PostSchema);
